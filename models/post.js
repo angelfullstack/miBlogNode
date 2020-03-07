@@ -1,11 +1,22 @@
-const getAll=()=>{
-    return new Promise((resolve,reject)=>{
-        if(err) return reject(err)
-        resolve(rows);
-
+const getAll = () => {
+  return new Promise((resolve, reject) => {
+    db.query("select * from posts", (err, rows) => {
+      if (err) reject(err);
+      resolve(rows);
     });
-}
+  });
+};
 
-module.exports={
-    getAll:getAll,
-}
+const getSome = (number)=>{
+  return new Promise((resolve,reject)=>{
+    db.query("select * from posts limit 0,?",[number],(err,rows)=>{
+      if(err) reject(err);
+      resolve(rows);
+    });
+  });
+};
+
+module.exports = {
+  getAll: getAll,
+  getSome:getSome
+};
