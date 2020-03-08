@@ -33,4 +33,14 @@ router.post("/", async (req, res) => {
   }
 });
 
+router.delete("/", async (req,res)=>{
+  try{
+    console.log(req.headers.id)
+    const result = await Post.deleteById(req.headers.id);
+    res.json(result);
+  }catch(err){
+    console.log(err);
+  }
+})
+
 module.exports = router;

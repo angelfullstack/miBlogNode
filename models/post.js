@@ -36,9 +36,19 @@ const create = ({titulo,autor,categoria,contenido,imagen})=>{
   });
 };
 
+const deleteById = (id)=>{
+  return new Promise ((resolve,reject)=>{
+    db.query('DELETE FROM posts where id=?',[id],(err,result)=>{
+      if(err) return reject(err);
+      resolve(result);
+    });
+  });
+};
+
 module.exports = {
   getAll: getAll,
   getSome:getSome,
   getOne:getOne,
   create:create,
+  deleteById:deleteById
 };
