@@ -14,9 +14,9 @@ router.get("/getsome", async (req, res) => {
 });
 
 router.get("/getone", async (req, res) => {
-  console.log("Mira lo que tengo en el body" + req.body.id);
+  console.log("Mira lo que tengo en el body" + req.headers.id);
   try {
-    const rows = await Post.getOne(parseInt(req.body.id));
+    const rows = await Post.getOne(parseInt(req.headers.id));
     res.json(rows);
   } catch (err) {
     console.log("el error es: " + err);
