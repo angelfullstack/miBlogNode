@@ -16,7 +16,18 @@ const getSome = (number)=>{
   });
 };
 
+const create = ({titulo,autor,categoria,contenido,imagen})=>{
+  return new Promise ((resolve,reject)=>{
+    db.query('INSERT INTO posts (titulo,autor,categoria,contenido,imagen,fecha) VALUES (?,?,?,?,?,?)',[titulo,autor,categoria,contenido,imagen,new Date()],
+    (err,result)=>{
+      if(err) reject(err);
+      resolve(result);
+    });
+  });
+};
+
 module.exports = {
   getAll: getAll,
-  getSome:getSome
+  getSome:getSome,
+  create:create,
 };
